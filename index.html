@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wabori · Yoso Tattoo, Miyazaki</title>
+<meta name="description" content="Custom Japanese tattoos by Yoso in Miyazaki City, Japan. Back pieces, sleeves and body suits, drawn by hand for one person and one body.">
+<meta property="og:title" content="Wabori · Yoso Tattoo, Miyazaki">
+<meta property="og:description" content="Custom Japanese tattoos by Yoso in Miyazaki City, Japan.">
+<meta property="og:url" content="https://wabori.yoso.one">
+<meta property="og:image" content="https://wabori.yoso.one/images/hero-lunar-water-dragon.webp">
+<link rel="icon" href="images/yoso-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<style>
+/* Sumi ground and gold leaf, from the kanji mark. Dark is the default; light follows the system setting. */
+:root {
+  --ground: #0E0D0B; --ground-2: #12110E; --ink: #E9E4D8; --ink-soft: #CFC9BC; --muted: #A39E93;
+  --line: #24211C; --frame: #2E2A23; --tile: #1B1915; --gold: #D4B26A; --gold-hi: #EBD39A; --on-gold: #0E0D0B;
+  --f-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --ground: #F3EFE6; --ground-2: #EAE5D9; --ink: #1C1A16; --ink-soft: #3F3B34; --muted: #5A554C;
+    --line: #D8D1C2; --frame: #CFC7B6; --tile: #E2DCCF; --gold: #7E6020; --gold-hi: #5E4714; --on-gold: #FFFFFF;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --ground: #F3EFE6; --ground-2: #EAE5D9; --ink: #1C1A16; --ink-soft: #3F3B34; --muted: #5A554C;
+  --line: #D8D1C2; --frame: #CFC7B6; --tile: #E2DCCF; --gold: #7E6020; --gold-hi: #5E4714; --on-gold: #FFFFFF;
+  color-scheme: light;
+}
+
+html, body { margin: 0; }
+body {
+  background: var(--ground); color: var(--ink);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+a { color: var(--gold); text-underline-offset: 3px; }
+a:hover { color: var(--gold-hi); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* Family mark: centred at the top of every Yoso site, linking to the hub */
+.family-mark { display: block; width: 48px; margin: 24px auto 0; line-height: 0; }
+.family-mark img { display: block; width: 48px; height: 48px; }
+.family-mark:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: max(20px, env(safe-area-inset-left, 0px)); box-sizing: border-box; }
+.band { background: var(--ground-2); border-block: 1px solid var(--line); }
+section { padding-block: clamp(64px, 9vw, 104px); }
+
+/* Header */
+.site-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding-block: 20px; }
+.site-name { display: flex; align-items: baseline; gap: 12px; color: var(--ink); text-decoration: none; }
+.site-name b { font-family: var(--f-display); font-weight: 600; font-size: 22px; letter-spacing: 0.06em; }
+.site-name span { font-family: var(--f-display); font-size: 18px; color: var(--gold); }
+.site-head nav { display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+.site-head nav a { color: var(--ink-soft); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+.site-head nav a:hover { color: var(--gold); }
+.site-head nav a.book { color: var(--on-gold); background: var(--gold); padding: 0 16px; }
+.site-head nav a.book:hover { background: var(--gold-hi); color: var(--on-gold); }
+
+.eyebrow { margin: 0; font-size: 13px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; margin: 0; }
+h1 { font-size: clamp(42px, 6vw, 82px); line-height: 1.08; }
+h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.15; }
+.lede { margin: 0; max-width: 34rem; font-size: 18px; color: var(--ink-soft); }
+
+.btns { display: flex; flex-wrap: wrap; gap: 14px; }
+.btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 26px; text-decoration: none; letter-spacing: 0.06em; border: 1px solid var(--frame); color: var(--ink); }
+.btn:hover { border-color: var(--gold); color: var(--ink); }
+.btn.primary { background: var(--gold); border-color: var(--gold); color: var(--on-gold); font-weight: 500; }
+.btn.primary:hover { background: var(--gold-hi); border-color: var(--gold-hi); color: var(--on-gold); }
+
+.photo { display: block; width: 100%; height: auto; object-fit: cover; background: var(--tile); border: 1px solid var(--frame); box-sizing: border-box; }
+
+/* Hero */
+.hero { display: flex; flex-wrap: wrap; align-items: center; gap: 56px; padding-top: 40px; }
+.hero > div { flex: 1 1 400px; min-width: 0; display: grid; gap: 22px; align-content: start; }
+.hero figure { flex: 1 1 360px; min-width: 0; margin: 0; display: grid; gap: 12px; }
+.hero .photo { aspect-ratio: 4 / 5; }
+.hero figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 14px; color: var(--muted); }
+.hero figcaption q { font-family: var(--f-display); font-style: italic; quotes: "\2018" "\2019"; }
+
+/* Approach */
+.split { display: flex; flex-wrap: wrap; gap: 48px; }
+.split > * { min-width: 0; }
+.mantra { flex: 1 1 300px; display: grid; gap: 4px; font-family: var(--f-display); font-size: clamp(26px, 3.2vw, 40px); line-height: 1.3; }
+.mantra span:last-child { color: var(--gold); }
+.prose { flex: 1.4 1 420px; display: grid; gap: 18px; font-size: 17px; color: var(--ink-soft); }
+.prose p { margin: 0; }
+
+/* Work */
+.work-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; padding-bottom: 36px; }
+.work-head > div { display: grid; gap: 8px; }
+.work-head p { margin: 0; max-width: 26rem; color: var(--muted); }
+.grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 24px; }
+.grid figure { margin: 0; display: grid; gap: 10px; }
+.grid .photo { aspect-ratio: 3 / 4; }
+.grid figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 12px; }
+.grid .t { font-family: var(--f-display); font-size: 18px; }
+.grid .p { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+@media (max-width: 560px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; } .grid .t { font-size: 16px; } }
+.more { margin: 36px 0 0; }
+.more a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* Process */
+.process { display: grid; gap: 44px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 32px; }
+.steps li { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--frame); padding-top: 18px; }
+.steps .n { font-family: var(--f-display); font-size: 32px; color: var(--gold); line-height: 1.2; }
+.steps h3 { font-size: 21px; }
+.steps p { margin: 0; font-size: 15px; color: var(--ink-soft); }
+.prep { display: flex; flex-wrap: wrap; gap: 32px 40px; border: 1px solid var(--frame); padding: clamp(20px, 4vw, 32px); background: var(--ground); }
+.prep > div { flex: 1 1 260px; min-width: 0; display: grid; gap: 8px; align-content: start; }
+.prep h3 { font-size: 22px; }
+.prep p { margin: 0; color: var(--muted); font-size: 15px; }
+.prep ul { flex: 2 1 400px; min-width: 0; margin: 0; padding-left: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 6px 32px; font-size: 15px; color: var(--ink-soft); }
+
+/* Studio */
+.studio { display: flex; flex-wrap: wrap; align-items: center; gap: 56px; }
+.studio .photo { flex: 1 1 360px; min-width: 0; width: auto; aspect-ratio: 3 / 2; }
+.studio > div { flex: 1 1 360px; min-width: 0; display: grid; gap: 16px; }
+.studio p { margin: 0; font-size: 17px; color: var(--ink-soft); }
+
+/* Booking */
+.booking { max-width: 860px; margin: 0 auto; display: grid; justify-items: center; gap: 22px; text-align: center; }
+.booking .gassho { font-family: var(--f-display); font-size: 40px; color: var(--gold); line-height: 1; }
+.booking p { margin: 0; max-width: 36rem; font-size: 17px; color: var(--ink-soft); }
+.booking .btns { justify-content: center; }
+
+/* Mailing list */
+.list { max-width: 560px; display: grid; gap: 10px; }
+.list h2 { font-size: clamp(24px, 3vw, 32px); }
+.list > p { margin: 0; color: var(--muted); }
+.list-form { display: grid; gap: 8px; margin-top: 8px; }
+.list-form label[for] { font-size: 13px; letter-spacing: 0.08em; color: var(--muted); }
+.list-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.list-form input[type=email] {
+  flex: 1 1 240px; min-width: 0; box-sizing: border-box; min-height: 48px; padding: 0 14px;
+  font: inherit; color: var(--ink); background: transparent; border: 1px solid var(--frame);
+}
+.list-form input[type=email]:focus-visible { border-color: var(--gold); }
+.list-form button {
+  min-height: 48px; padding: 0 24px; font: inherit; letter-spacing: 0.06em; cursor: pointer;
+  color: var(--on-gold); background: var(--gold); border: 0;
+}
+.list-form button:hover { background: var(--gold-hi); }
+.list-form .note { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding-block: 28px; font-size: 13px; color: var(--muted); }
+footer p { margin: 0; }
+footer a { color: var(--ink-soft); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+<a class="family-mark" href="https://hub.yoso.one"><img src="images/yoso-mark.png" alt="Yoso" width="48" height="48"></a>
+
+<header class="wrap site-head">
+  <a class="site-name" href="index.html"><b>WABORI</b><span lang="ja">和彫</span></a>
+  <nav aria-label="Main">
+    <a href="#work">Work</a>
+    <a href="#approach">Approach</a>
+    <a href="#process">Process</a>
+    <a href="#studio">Studio</a>
+    <a class="book" href="#booking">Book</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero" aria-labelledby="hero-h">
+    <div>
+      <p class="eyebrow">Japanese tattoo · Miyazaki City</p>
+      <h1 id="hero-h">A creation for your life journey</h1>
+      <p class="lede">Custom Japanese tattoos, drawn by hand for one person and one body. Each piece begins as a conversation and is carved with intention, breath and care.</p>
+      <div class="btns">
+        <a class="btn primary" href="#booking">Request a consultation</a>
+        <a class="btn" href="#work">See the work</a>
+      </div>
+    </div>
+    <figure>
+      <img class="photo" src="images/hero-lunar-water-dragon.webp" alt="Lunar Water Dragon, a tattoo design by Yoso: a luminous water dragon under a crescent moon" width="1000" height="1416">
+      <figcaption><q>Harmony and prosperity.</q><span><span lang="ja">調和と繁栄</span> · Yoso</span></figcaption>
+    </figure>
+  </section>
+
+  <div class="band" id="approach">
+    <section class="wrap split" aria-label="Approach">
+      <p class="mantra"><span>Ink as ceremony.</span><span>Art as practice.</span><span>Transformation as intention.</span></p>
+      <div class="prose">
+        <p>Yoso is a practitioner of presence, rooted in Japanese aesthetics, Zen philosophy and the quiet wisdom of nature. Each session is a ceremony; each design, a conversation between your story and the eternal.</p>
+        <p>More than two decades of Japanese art, Reiki and martial practice shape a gentle way of working: tuning in to your breathing, building in layers, and letting each piece settle into the skin between sittings.</p>
+        <p>Inspiration has no borders. Traditional Chinese painting, Japanese iconography and contemporary forms all feed the work, while the symbolism stays grounded in Eastern tradition.</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="wrap" id="work" aria-labelledby="work-h">
+    <div class="work-head">
+      <div>
+        <p class="eyebrow">Portfolio</p>
+        <h2 id="work-h">Selected work</h2>
+      </div>
+      <p>Back pieces, sleeves and body suits. Every design is made once, for its wearer, and is never repeated.</p>
+    </div>
+    <ul class="grid" id="works"></ul>
+    <noscript><p>The portfolio needs JavaScript. You can also see the work on <a href="https://www.instagram.com/yosotattoo/">Instagram</a>.</p></noscript>
+    <p class="more"><a href="https://www.instagram.com/yosotattoo/">More on Instagram →</a></p>
+  </section>
+
+  <div class="band" id="process">
+    <section class="wrap process" aria-labelledby="process-h">
+      <div>
+        <p class="eyebrow">The tattoo journey</p>
+        <h2 id="process-h">How a piece comes to life</h2>
+      </div>
+      <ol class="steps">
+        <li><span class="n" aria-hidden="true">一</span><h3>Consultation</h3><p>A conversation to outline your idea and meet each other. If the project is not the right fit, Yoso will point you to another artist.</p></li>
+        <li><span class="n" aria-hidden="true">二</span><h3>Symbolism</h3><p>Your message is distilled to its essence, choosing symbols rooted in tradition so the piece has strong foundations.</p></li>
+        <li><span class="n" aria-hidden="true">三</span><h3>Design</h3><p>Over a few weeks, drafts move from rough to refined for a set design fee, then are reviewed together before any ink.</p></li>
+        <li><span class="n" aria-hidden="true">四</span><h3>Sessions</h3><p>Larger pieces take several sittings. Healing time between them lets the work soften, deepen and settle.</p></li>
+      </ol>
+      <div class="prep">
+        <div>
+          <h3>Before your session</h3>
+          <p>The full day is reserved for you. No numbing cream; we work with the breath instead.</p>
+        </div>
+        <ul>
+          <li>Sleep and eat well; stay sober</li>
+          <li>Do not shave the area</li>
+          <li>Bring two clean towels and snacks</li>
+          <li>Wear comfortable clothes</li>
+          <li>Bring your aftercare cream</li>
+          <li>Tell us about allergies or conditions</li>
+          <li>Postpone if you have a cold</li>
+          <li>Not possible while pregnant or breastfeeding</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="wrap studio" id="studio" aria-labelledby="studio-h">
+    <img class="photo" src="images/studio-altar.webp" alt="The altar in Yoso's Miyazaki studio, black-and-white photograph" width="1000" height="667" loading="lazy">
+    <div>
+      <p class="eyebrow">Miyazaki studio</p>
+      <h2 id="studio-h">The studio is a temple</h2>
+      <p>A private, quiet space in Miyazaki City, open by appointment only. For those travelling to Japan, a session here can be a retreat: time to rest and resource.</p>
+      <p>Confidentiality is respected. If you wish your piece to remain private, nothing is published.</p>
+    </div>
+  </section>
+
+  <div class="band" id="booking">
+    <section class="wrap booking" aria-labelledby="booking-h">
+      <span class="gassho" lang="ja" aria-hidden="true">合掌</span>
+      <h2 id="booking-h">Begin the conversation</h2>
+      <p>Share your idea, the placement and its size. Design and sessions are charged at an hourly rate or a set daily fee; larger pieces are estimated together at consultation.</p>
+      <div class="btns">
+        <a class="btn primary" href="https://yoso.one/contact">Book a consultation</a>
+        <a class="btn" href="https://www.instagram.com/yosotattoo/">@yosotattoo</a>
+      </div>
+    </section>
+  </div>
+
+  <section class="wrap" aria-labelledby="list-h">
+    <div class="list">
+      <h2 id="list-h">Mailing list</h2>
+      <p>Occasional letters when something new is finished.</p>
+      <form class="list-form" action="https://buttondown.com/api/emails/embed-subscribe/yoso" method="post" target="_blank">
+        <label for="list-email">Email address</label>
+        <div class="list-row">
+          <input id="list-email" name="email" type="email" autocomplete="email" required>
+          <button type="submit">Subscribe</button>
+        </div>
+        <fieldset class="list-choice" data-list-choice>
+          <legend>Which newsletters would you like?</legend>
+          <label class="lc-box"><input type="checkbox" name="tag" value="one"><span><span class="lc-name">The Vault</span><span class="lc-desc">Notes, essays and research from one.yoso.one</span></span></label>
+          <label class="lc-box"><input type="checkbox" name="tag" value="yosokuro"><span><span class="lc-name">Yosokuro</span><span class="lc-desc">Black-and-white photographs of Japan</span></span></label>
+          <label class="lc-box"><input type="checkbox" name="tag" value="shinsei"><span><span class="lc-name">Shinsei</span><span class="lc-desc">New paintings, scrolls and exhibitions</span></span></label>
+          <label class="lc-box"><input type="checkbox" name="tag" value="river"><span><span class="lc-name">River</span><span class="lc-desc">New short texts</span></span></label>
+          <label class="lc-box"><input type="checkbox" name="tag" value="on"><span><span class="lc-name">On</span><span class="lc-desc">Each numbered issue of the magazine</span></span></label>
+        </fieldset>
+        <input type="hidden" name="embed" value="1">
+        <p class="note">Sent through Buttondown. Confirm by email; unsubscribe any time.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 <a class="hub-link" href="https://hub.yoso.one">Yoso</a>. All works and images are the artist&rsquo;s own. · <span class="version" data-version>Beta 0.1</span></p>
+    <p><a href="https://www.instagram.com/yosotattoo/">Instagram</a> · <a href="https://mastodon.social/@Yosoone">Mastodon</a> · <a href="https://yoso.one">yoso.one</a></p>
+  </div>
+</footer>
+
+<script src="assets/works.js"></script>
+<script>
+(function () {
+  var list = document.getElementById("works");
+  (window.WABORI_WORKS || []).forEach(function (w) {
+    var li = document.createElement("li");
+    var fig = document.createElement("figure");
+    var img = document.createElement("img");
+    img.className = "photo"; img.src = w.img; img.alt = w.alt; img.loading = "lazy";
+    var cap = document.createElement("figcaption");
+    var t = document.createElement("span"); t.className = "t"; t.textContent = w.title;
+    var p = document.createElement("span"); p.className = "p"; p.textContent = w.place;
+    cap.append(t, p); fig.append(img, cap); li.append(fig); list.append(li);
+  });
+})();
+</script>
+<script src="assets/list-choice.js" defer></script>
+</body>
+</html>
