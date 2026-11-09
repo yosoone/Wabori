@@ -80,13 +80,72 @@ h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.15; }
 
 .photo { display: block; width: 100%; height: auto; object-fit: cover; background: var(--tile); border: 1px solid var(--frame); box-sizing: border-box; }
 
-/* Hero */
-.hero { display: flex; flex-wrap: wrap; align-items: center; gap: 56px; padding-top: 40px; }
-.hero > div { flex: 1 1 400px; min-width: 0; display: grid; gap: 22px; align-content: start; }
-.hero figure { flex: 1 1 360px; min-width: 0; margin: 0; display: grid; gap: 12px; }
-.hero .photo { aspect-ratio: 4 / 5; }
-.hero figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 14px; color: var(--muted); }
-.hero figcaption q { font-family: var(--f-display); font-style: italic; quotes: "\2018" "\2019"; }
+/* Stage: the opening screen. The Lunar Water Dragon fills the window, with the mark,
+   header and title laid over it. It stays sumi-dark in both themes, like the lightbox. */
+.stage {
+  --ground: #0A0C10; --ink: #EEE9DD; --ink-soft: #D6D0C3; --muted: #A9A398;
+  --frame: rgba(238, 233, 221, .32); --gold: #D4B26A; --gold-hi: #EBD39A; --on-gold: #0E0D0B;
+  color-scheme: dark;
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: 100vh; min-height: 100svh;
+  display: grid; grid-template-rows: auto auto 1fr auto;
+  background: var(--ground); color: var(--ink);
+}
+.stage-art { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.stage-glow { position: absolute; inset: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(70px) saturate(.8); opacity: .35; }
+.stage-frame { position: absolute; inset: 0; }
+.stage-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 62% 20%; }
+/* Shade for legibility: top for the header, bottom for the title */
+.stage-art::after { content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(10,12,16,.92) 0, rgba(10,12,16,.6) 18%, rgba(10,12,16,0) 34%),
+    linear-gradient(to top, rgba(10,12,16,.97) 0, rgba(10,12,16,.82) 38%, rgba(10,12,16,0) 72%); }
+/* Wide screens: the painting stands on the right at full height, feathered into the ground */
+@media (min-aspect-ratio: 1 / 1) and (min-width: 820px) {
+  .stage-frame { left: auto; width: min(64%, 120vh);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 28%);
+            mask-image: linear-gradient(to right, transparent 0, #000 28%); }
+  .stage-img { object-position: 50% 34%; }
+  .stage-art::after { background:
+    linear-gradient(to bottom, rgba(10,12,16,.6) 0, rgba(10,12,16,0) 20%),
+    linear-gradient(to right, rgba(10,12,16,.9) 0, rgba(10,12,16,.55) 38%, rgba(10,12,16,0) 62%),
+    linear-gradient(to top, rgba(10,12,16,.97) 0, rgba(10,12,16,0) 30%); }
+}
+.stage > .wrap { width: 100%; }
+.stage .site-head nav a { text-shadow: 0 1px 12px rgba(0,0,0,.6); }
+
+/* Hero text, at the foot of the stage */
+.hero { align-self: end; display: grid; gap: 22px; padding-block: 48px clamp(28px, 6vh, 64px); }
+.hero > div { display: grid; gap: 22px; max-width: 40rem; }
+.hero h1 { font-size: clamp(42px, 6.4vw, 92px); text-shadow: 0 2px 30px rgba(0,0,0,.5); }
+.hero .lede { text-shadow: 0 1px 16px rgba(0,0,0,.7); }
+.hero .btn:not(.primary) { background: rgba(10,12,16,.35); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.hero-cap { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; letter-spacing: .06em; color: var(--muted); }
+.hero-cap q { font-family: var(--f-display); font-style: italic; letter-spacing: 0; quotes: "\2018" "\2019"; color: var(--ink-soft); }
+
+/* Scroll cue: a fine gold line drawn downwards */
+.cue { justify-self: center; display: grid; justify-items: center; gap: 8px; padding: 6px 12px calc(16px + env(safe-area-inset-bottom, 0px));
+  font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+.cue:hover { color: var(--gold); }
+.cue i { display: block; width: 1px; height: 44px; background: linear-gradient(var(--gold), transparent); transform-origin: top; }
+@media (max-height: 640px) { .cue { display: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .stage-frame { animation: stage-in 2.6s cubic-bezier(.2,.7,.2,1) both; translate: 0 calc(var(--p, 0) * 14vh); }
+  .stage-img { animation: breathe 16s ease-in-out 2.6s infinite alternate; }
+  .stage-glow { animation: glow-in 3.2s ease both; }
+  .hero > div > *, .hero-cap { animation: rise 1.2s cubic-bezier(.2,.7,.2,1) both; }
+  .hero .eyebrow { animation-delay: .5s; } .hero h1 { animation-delay: .7s; }
+  .hero .lede { animation-delay: .95s; } .hero .btns { animation-delay: 1.15s; } .hero-cap { animation-delay: 1.5s; }
+  .hero { opacity: calc(1 - var(--p, 0) * 1.6); translate: 0 calc(var(--p, 0) * -6vh); }
+  .cue { animation: rise 1.2s ease 2s both; }
+  .cue i { animation: draw 2.4s ease-in-out 2.4s infinite; }
+}
+@keyframes stage-in { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: none; } }
+@keyframes glow-in { from { opacity: 0; } }
+@keyframes breathe { to { transform: scale(1.045); } }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+@keyframes draw { 0% { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
 
 /* Approach */
 .split { display: flex; flex-wrap: wrap; gap: 48px; }
@@ -188,6 +247,14 @@ footer a { color: var(--ink-soft); }
 </style>
 </head>
 <body>
+<div class="stage" id="top">
+<div class="stage-art">
+  <img class="stage-glow" src="images/hero-lunar-water-dragon.webp" alt="" aria-hidden="true">
+  <div class="stage-frame">
+    <img class="stage-img" src="images/hero-lunar-water-dragon.webp" alt="Lunar Water Dragon, a tattoo design by Yoso: a luminous water dragon under a crescent moon" width="1000" height="1416" fetchpriority="high">
+  </div>
+</div>
+
 <a class="family-mark" href="https://hub.yoso.one"><img src="images/yoso-mark.png" alt="Yoso" width="48" height="48"></a>
 
 <header class="wrap site-head">
@@ -201,7 +268,6 @@ footer a { color: var(--ink-soft); }
   </nav>
 </header>
 
-<main>
   <section class="wrap hero" aria-labelledby="hero-h">
     <div>
       <p class="eyebrow">Japanese tattoo · Miyazaki City</p>
@@ -212,11 +278,13 @@ footer a { color: var(--ink-soft); }
         <a class="btn" href="#work">See the work</a>
       </div>
     </div>
-    <figure>
-      <img class="photo" src="images/hero-lunar-water-dragon.webp" alt="Lunar Water Dragon, a tattoo design by Yoso: a luminous water dragon under a crescent moon" width="1000" height="1416">
-      <figcaption><q>Harmony and prosperity.</q><span><span lang="ja">調和と繁栄</span> · Yoso</span></figcaption>
-    </figure>
+    <p class="hero-cap"><span>Lunar Water Dragon</span><q>Harmony and prosperity.</q><span><span lang="ja">調和と繁栄</span></span></p>
   </section>
+
+  <a class="cue" href="#approach" aria-label="Scroll to the approach">Scroll<i aria-hidden="true"></i></a>
+</div>
+
+<main id="main">
 
   <div class="band" id="approach">
     <section class="wrap split" aria-label="Approach">
@@ -307,7 +375,7 @@ footer a { color: var(--ink-soft); }
         </div>
         <fieldset class="list-choice" data-list-choice>
           <legend>Which newsletters would you like?</legend>
-          <label class="lc-box"><input type="checkbox" name="tag" value="one"><span><span class="lc-name">The Vault</span><span class="lc-desc">Notes, essays and research from one.yoso.one</span></span></label>
+          <label class="lc-box"><input type="checkbox" name="tag" value="one"><span><span class="lc-name">One</span><span class="lc-desc">Notes, essays and research from one.yoso.one</span></span></label>
           <label class="lc-box"><input type="checkbox" name="tag" value="yosokuro"><span><span class="lc-name">Yosokuro</span><span class="lc-desc">Black-and-white photographs of Japan</span></span></label>
           <label class="lc-box"><input type="checkbox" name="tag" value="shinsei"><span><span class="lc-name">Shinsei</span><span class="lc-desc">New paintings, scrolls and exhibitions</span></span></label>
           <label class="lc-box"><input type="checkbox" name="tag" value="river"><span><span class="lc-name">River</span><span class="lc-desc">New short texts</span></span></label>
@@ -322,7 +390,7 @@ footer a { color: var(--ink-soft); }
 
 <footer>
   <div class="wrap">
-    <p>&copy; 2026 <a class="hub-link" href="https://hub.yoso.one">Yoso</a>. All works and images are the artist&rsquo;s own. · <span class="version" data-version>Beta 0.3</span></p>
+    <p>&copy; 2026 <a class="hub-link" href="https://hub.yoso.one">Yoso</a>. All works and images are the artist&rsquo;s own. · <span class="version" data-version>Beta 0.4</span></p>
     <p><a href="https://www.instagram.com/yosotattoo/">Instagram</a> · <a href="https://mastodon.social/@Yosoone">Mastodon</a> · <a href="https://yoso.one">yoso.one</a></p>
   </div>
 </footer>
@@ -398,6 +466,22 @@ footer a { color: var(--ink-soft); }
     var dx = e.changedTouches[0].clientX - x0; x0 = null;
     if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
   });
+})();
+</script>
+<script>
+/* Opening screen: as the page scrolls, the dragon sinks slowly and the title fades (skipped with reduced motion) */
+(function () {
+  var stage = document.querySelector(".stage");
+  if (!stage || !window.matchMedia || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var h = stage.offsetHeight || 1;
+    var p = Math.min(Math.max(window.scrollY / h, 0), 1);
+    stage.style.setProperty("--p", p.toFixed(3));
+  }
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
 })();
 </script>
 <script src="assets/list-choice.js" defer></script>
