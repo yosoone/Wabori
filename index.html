@@ -69,7 +69,7 @@ h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.15; }
 
 .photo { display: block; width: 100%; height: auto; object-fit: cover; background: var(--tile); border: 1px solid var(--frame); box-sizing: border-box; }
 
-/* Stage: the opening screen. The Lunar Water Dragon fills the window, with the mark,
+/* Stage: the opening screen. The Phoenix back piece fills the window, with the mark,
    header and title laid over it. */
 .stage {
   --ground: #0A0C10; --ink: #EEE9DD; --ink-soft: #D6D0C3; --muted: #A9A398;
@@ -83,7 +83,7 @@ h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.15; }
 .stage-art { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
 .stage-glow { position: absolute; inset: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(70px) saturate(.8); opacity: .35; }
 .stage-frame { position: absolute; inset: 0; }
-.stage-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 62% 20%; }
+.stage-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 42% 40%; }
 /* Shade for legibility: top for the header, bottom for the title */
 .stage-art::after { content: ""; position: absolute; inset: 0;
   background:
@@ -94,7 +94,7 @@ h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.15; }
   .stage-frame { left: auto; width: min(64%, 120vh);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 28%);
             mask-image: linear-gradient(to right, transparent 0, #000 28%); }
-  .stage-img { object-position: 50% 34%; }
+  .stage-img { object-position: 50% 58%; }
   .stage-art::after { background:
     linear-gradient(to bottom, rgba(10,12,16,.6) 0, rgba(10,12,16,0) 20%),
     linear-gradient(to right, rgba(10,12,16,.9) 0, rgba(10,12,16,.55) 38%, rgba(10,12,16,0) 62%),
@@ -238,9 +238,9 @@ footer a { color: var(--ink-soft); }
 <body>
 <div class="stage" id="top">
 <div class="stage-art">
-  <img class="stage-glow" src="images/hero-lunar-water-dragon.webp" alt="" aria-hidden="true">
+  <img class="stage-glow" src="images/phoenix-back.webp" alt="" aria-hidden="true">
   <div class="stage-frame">
-    <img class="stage-img" src="images/hero-lunar-water-dragon.webp" alt="Lunar Water Dragon, a tattoo design by Yoso: a luminous water dragon under a crescent moon" width="1000" height="1416" fetchpriority="high">
+    <img class="stage-img" src="images/phoenix-back.webp" alt="Phoenix back piece tattoo by Yoso, black and grey" width="1000" height="1336" fetchpriority="high">
   </div>
 </div>
 
@@ -267,7 +267,7 @@ footer a { color: var(--ink-soft); }
         <a class="btn" href="#work">See the work</a>
       </div>
     </div>
-    <p class="hero-cap"><span>Lunar Water Dragon</span><q>Harmony and prosperity.</q><span><span lang="ja">調和と繁栄</span></span></p>
+    <p class="hero-cap"><span>Phoenix · Back piece</span></p>
   </section>
 
   <a class="cue" href="#approach" aria-label="Scroll to the approach">Scroll<i aria-hidden="true"></i></a>
@@ -379,7 +379,7 @@ footer a { color: var(--ink-soft); }
 
 <footer>
   <div class="wrap">
-    <p>&copy; 2026 <a class="hub-link" href="https://hub.yoso.one">Yoso</a>. All works and images are the artist&rsquo;s own. · <span class="version" data-version>Beta 0.5</span></p>
+    <p>&copy; 2026 <a class="hub-link" href="https://hub.yoso.one">Yoso</a>. All works and images are the artist&rsquo;s own. · <span class="version" data-version>Beta 0.6</span></p>
     <p><a href="https://www.instagram.com/yosotattoo/">Instagram</a> · <a href="https://mastodon.social/@Yosoone">Mastodon</a> · <a href="https://yoso.one">yoso.one</a></p>
   </div>
 </footer>
@@ -458,7 +458,7 @@ footer a { color: var(--ink-soft); }
 })();
 </script>
 <script>
-/* Opening screen: as the page scrolls, the dragon sinks slowly and the title fades (skipped with reduced motion) */
+/* Opening screen: as the page scrolls, the phoenix sinks slowly and the title fades (skipped with reduced motion) */
 (function () {
   var stage = document.querySelector(".stage");
   if (!stage || !window.matchMedia || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
