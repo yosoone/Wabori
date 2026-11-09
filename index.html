@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0E0D0B">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Wabori · Yoso Tattoo, Miyazaki</title>
 <meta name="description" content="Custom Japanese tattoos by Yoso in Miyazaki City, Japan. Back pieces, sleeves and body suits, drawn by hand for one person and one body.">
@@ -14,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
 <style>
-/* Sumi ground and gold leaf, from the kanji mark. Dark is the default; light follows the system setting. */
+/* Sumi ground and gold leaf, from the kanji mark. The site is always dark, whatever the system setting. */
 :root {
   --ground: #0E0D0B; --ground-2: #12110E; --ink: #E9E4D8; --ink-soft: #CFC9BC; --muted: #A39E93;
   --line: #24211C; --frame: #2E2A23; --tile: #1B1915; --gold: #D4B26A; --gold-hi: #EBD39A; --on-gold: #0E0D0B;
@@ -22,19 +24,6 @@
   --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
   color-scheme: dark;
 }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --ground: #F3EFE6; --ground-2: #EAE5D9; --ink: #1C1A16; --ink-soft: #3F3B34; --muted: #5A554C;
-    --line: #D8D1C2; --frame: #CFC7B6; --tile: #E2DCCF; --gold: #7E6020; --gold-hi: #5E4714; --on-gold: #FFFFFF;
-    color-scheme: light;
-  }
-}
-:root[data-theme="light"] {
-  --ground: #F3EFE6; --ground-2: #EAE5D9; --ink: #1C1A16; --ink-soft: #3F3B34; --muted: #5A554C;
-  --line: #D8D1C2; --frame: #CFC7B6; --tile: #E2DCCF; --gold: #7E6020; --gold-hi: #5E4714; --on-gold: #FFFFFF;
-  color-scheme: light;
-}
-
 html, body { margin: 0; }
 body {
   background: var(--ground); color: var(--ink);
@@ -81,7 +70,7 @@ h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.15; }
 .photo { display: block; width: 100%; height: auto; object-fit: cover; background: var(--tile); border: 1px solid var(--frame); box-sizing: border-box; }
 
 /* Stage: the opening screen. The Lunar Water Dragon fills the window, with the mark,
-   header and title laid over it. It stays sumi-dark in both themes, like the lightbox. */
+   header and title laid over it. */
 .stage {
   --ground: #0A0C10; --ink: #EEE9DD; --ink-soft: #D6D0C3; --muted: #A9A398;
   --frame: rgba(238, 233, 221, .32); --gold: #D4B26A; --gold-hi: #EBD39A; --on-gold: #0E0D0B;
@@ -390,7 +379,7 @@ footer a { color: var(--ink-soft); }
 
 <footer>
   <div class="wrap">
-    <p>&copy; 2026 <a class="hub-link" href="https://hub.yoso.one">Yoso</a>. All works and images are the artist&rsquo;s own. · <span class="version" data-version>Beta 0.4</span></p>
+    <p>&copy; 2026 <a class="hub-link" href="https://hub.yoso.one">Yoso</a>. All works and images are the artist&rsquo;s own. · <span class="version" data-version>Beta 0.5</span></p>
     <p><a href="https://www.instagram.com/yosotattoo/">Instagram</a> · <a href="https://mastodon.social/@Yosoone">Mastodon</a> · <a href="https://yoso.one">yoso.one</a></p>
   </div>
 </footer>

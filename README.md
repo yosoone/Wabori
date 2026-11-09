@@ -1,6 +1,6 @@
 # wabori.yoso.one
 
-Wabori (和彫) is Yoso's tattoo site: custom Japanese tattoos from the studio in Miyazaki City. It is one page with the portfolio, the approach, the tattoo process, the studio and booking. It covers tattooing only.
+Wabori (和彫) is Yoso's tattoo site: custom Japanese tattoos from the studio in Miyazaki City. It is one page with the portfolio, the approach, the tattoo process, the studio and booking. It covers tattooing only. The site is always dark (sumi ground, gold leaf), whatever the visitor's system setting.
 
 ## Files
 
