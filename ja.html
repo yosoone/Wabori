@@ -84,7 +84,7 @@
 <div class="stage-art">
   <img class="stage-glow" src="images/phoenix-back.webp" alt="" aria-hidden="true">
   <div class="stage-frame">
-    <img class="stage-img" src="images/phoenix-back.webp" alt="Yosoによる鳳凰の背中のタトゥー（ブラック＆グレー）" width="1000" height="1336" fetchpriority="high">
+    <img class="stage-img is-on" style="--pos: 42% 40%; --pos-wide: 50% 58%" src="images/phoenix-back.webp" alt="Yosoによる鳳凰の背中のタトゥー（ブラック＆グレー）" width="1000" height="1336" fetchpriority="high">
   </div>
 </div>
 
@@ -112,7 +112,15 @@
         <a class="btn" href="#work">作品を見る</a>
       </div>
     </div>
-    <p class="hero-cap"><span>鳳凰 ・ 背中</span></p>
+    <div class="hero-foot">
+      <p class="hero-cap"><span data-slide-cap>鳳凰 ・ 背中</span></p>
+      <div class="slide-ctl" role="group" aria-label="スライドショー" hidden>
+        <button type="button" class="prev" aria-label="前の写真">&#8592;</button>
+        <span class="count" aria-live="polite"></span>
+        <button type="button" class="next" aria-label="次の写真">&#8594;</button>
+        <button type="button" class="pause" aria-label="スライドショーを一時停止" aria-pressed="false"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12"/><rect x="8.5" y="1" width="3.5" height="12"/></svg></button>
+      </div>
+    </div>
   </section>
 
   <a class="cue" href="#approach" aria-label="理念へ進む">Scroll<i aria-hidden="true"></i></a>
@@ -224,7 +232,7 @@
 
 <footer>
   <div class="wrap">
-    <p>&copy; 2026 <a class="hub-link" href="https://hub.yoso.one">Yoso</a>. 作品と画像はすべて作家本人のものです。 · <span class="version" data-version>Beta 0.7</span></p>
+    <p>&copy; 2026 <a class="hub-link" href="https://hub.yoso.one">Yoso</a>. 作品と画像はすべて作家本人のものです。 · <span class="version" data-version>Beta 0.8</span></p>
     <p><a href="https://www.instagram.com/yosotattoo/">Instagram</a> · <a href="https://mastodon.social/@Yosoone">Mastodon</a> · <a href="https://yoso.one">yoso.one</a></p>
   </div>
 </footer>

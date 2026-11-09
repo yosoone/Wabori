@@ -68,7 +68,10 @@ h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.15; }
 .stage-art { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
 .stage-glow { position: absolute; inset: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(70px) saturate(.8); opacity: .35; }
 .stage-frame { position: absolute; inset: 0; }
-.stage-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 42% 40%; }
+.stage-img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover;
+  object-position: var(--pos, 50% 30%); opacity: 0; transition: opacity 1.8s ease; }
+.stage-img.is-on { opacity: 1; }
+.stage-glow { transition: opacity 1.2s ease; }
 /* Shade for legibility: top for the header, bottom for the title */
 .stage-art::after { content: ""; position: absolute; inset: 0;
   background:
@@ -79,9 +82,9 @@ h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.15; }
   .stage-frame { left: auto; width: min(64%, 120vh);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 28%);
             mask-image: linear-gradient(to right, transparent 0, #000 28%); }
-  .stage-img { object-position: 50% 58%; }
+  .stage-img { object-position: var(--pos-wide, 50% 38%); }
   .stage-art::after { background:
-    linear-gradient(to bottom, rgba(10,12,16,.6) 0, rgba(10,12,16,0) 20%),
+    linear-gradient(to bottom, rgba(10,12,16,.8) 0, rgba(10,12,16,.35) 14%, rgba(10,12,16,0) 26%),
     linear-gradient(to right, rgba(10,12,16,.9) 0, rgba(10,12,16,.55) 38%, rgba(10,12,16,0) 62%),
     linear-gradient(to top, rgba(10,12,16,.97) 0, rgba(10,12,16,0) 30%); }
 }
@@ -94,8 +97,18 @@ h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.15; }
 .hero h1 { font-size: clamp(42px, 6.4vw, 92px); text-shadow: 0 2px 30px rgba(0,0,0,.5); }
 .hero .lede { text-shadow: 0 1px 16px rgba(0,0,0,.7); }
 .hero .btn:not(.primary) { background: rgba(10,12,16,.35); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; }
 .hero-cap { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; letter-spacing: .06em; color: var(--muted); }
 .hero-cap q { font-family: var(--f-display); font-style: italic; letter-spacing: 0; quotes: "\2018" "\2019"; color: var(--ink-soft); }
+
+/* Slideshow controls: previous, pause, next and the count */
+.slide-ctl { display: flex; align-items: center; gap: 2px; font-size: 12px; letter-spacing: .14em; color: var(--muted); }
+.slide-ctl[hidden] { display: none; }
+.slide-ctl button { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0;
+  font: inherit; font-size: 18px; letter-spacing: 0; line-height: 1; color: var(--ink-soft); background: transparent; border: 1px solid transparent; cursor: pointer; }
+.slide-ctl button:hover { color: var(--gold); border-color: var(--frame); }
+.slide-ctl .count { min-width: 5.5em; text-align: center; font-variant-numeric: tabular-nums; }
+.slide-ctl .pause svg { width: 14px; height: 14px; fill: currentColor; }
 
 /* Scroll cue: a fine gold line drawn downwards */
 .cue { justify-self: center; display: grid; justify-items: center; gap: 8px; padding: 6px 12px calc(16px + env(safe-area-inset-bottom, 0px));
@@ -106,18 +119,18 @@ h2 { font-size: clamp(30px, 4vw, 50px); line-height: 1.15; }
 
 @media (prefers-reduced-motion: no-preference) {
   .stage-frame { animation: stage-in 2.6s cubic-bezier(.2,.7,.2,1) both; translate: 0 calc(var(--p, 0) * 14vh); }
-  .stage-img { animation: breathe 16s ease-in-out 2.6s infinite alternate; }
+  .stage-img.is-on { animation: drift 10s linear both; }
   .stage-glow { animation: glow-in 3.2s ease both; }
-  .hero > div > *, .hero-cap { animation: rise 1.2s cubic-bezier(.2,.7,.2,1) both; }
+  .hero > div > *, .hero-foot { animation: rise 1.2s cubic-bezier(.2,.7,.2,1) both; }
   .hero .eyebrow { animation-delay: .5s; } .hero h1 { animation-delay: .7s; }
-  .hero .lede { animation-delay: .95s; } .hero .btns { animation-delay: 1.15s; } .hero-cap { animation-delay: 1.5s; }
+  .hero .lede { animation-delay: .95s; } .hero .btns { animation-delay: 1.15s; } .hero-foot { animation-delay: 1.5s; }
   .hero { opacity: calc(1 - var(--p, 0) * 1.6); translate: 0 calc(var(--p, 0) * -6vh); }
   .cue { animation: rise 1.2s ease 2s both; }
   .cue i { animation: draw 2.4s ease-in-out 2.4s infinite; }
 }
 @keyframes stage-in { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: none; } }
 @keyframes glow-in { from { opacity: 0; } }
-@keyframes breathe { to { transform: scale(1.045); } }
+@keyframes drift { from { transform: scale(1.06); } to { transform: none; } }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
 @keyframes draw { 0% { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
 

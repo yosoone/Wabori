@@ -1,6 +1,7 @@
 /* Wabori: the page's scripts, shared by the English and Japanese pages.
  * 1. Builds the portfolio grid from assets/works.js, with a full-size viewer.
  * 2. On the opening screen, lets the picture sink and the title fade as the page scrolls.
+ * 3. Runs the opening slideshow through the same list, starting from the Phoenix.
  */
 (function () {
   var works = window.WABORI_WORKS || [];
@@ -84,4 +85,79 @@
   }
   window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   update();
+})();
+
+/* Opening slideshow: one picture every 7 seconds, cross-fading, starting from the photo
+   already in the page. It can be paused, and stops by itself for visitors who ask for
+   reduced motion (they can still step through with the arrows). */
+(function () {
+  var frame = document.querySelector(".stage-frame");
+  var first = frame && frame.querySelector(".stage-img");
+  var ctl = document.querySelector(".slide-ctl");
+  var works = window.WABORI_WORKS || [];
+  if (!first || !ctl || works.length < 2) return;
+  var ja = document.documentElement.lang === "ja";
+  var cap = document.querySelector("[data-slide-cap]");
+  var glow = document.querySelector(".stage-glow");
+  var count = ctl.querySelector(".count");
+  var pauseBtn = ctl.querySelector(".pause");
+  var DELAY = 7000;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var start = 0;
+  works.forEach(function (w, i) { if (w.img === first.getAttribute("src")) start = i; });
+  var els = []; els[start] = first;
+  var cur = start, timer = null, paused = reduce;
+
+  function label(w) {
+    return ja ? ((w.title_ja || w.title) + " ・ " + (w.place_ja || w.place)) : (w.title + " · " + w.place);
+  }
+  function el(i) {
+    if (els[i]) return els[i];
+    var w = works[i], img = document.createElement("img");
+    img.className = "stage-img"; img.decoding = "async";
+    img.src = w.img; img.alt = (ja && w.alt_ja) || w.alt;
+    if (w.pos) img.style.setProperty("--pos", w.pos);
+    if (w.pos_wide) img.style.setProperty("--pos-wide", w.pos_wide);
+    img.setAttribute("aria-hidden", "true");
+    frame.appendChild(img);
+    return (els[i] = img);
+  }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function show(i) {
+    i = (i + works.length) % works.length;
+    if (i === cur) return;
+    var next = el(i), prev = els[cur];
+    function swap() {
+      prev.classList.remove("is-on"); prev.setAttribute("aria-hidden", "true");
+      next.classList.add("is-on"); next.removeAttribute("aria-hidden");
+      if (glow) glow.src = works[i].img;
+    }
+    if (next.complete) swap(); else next.addEventListener("load", swap, { once: true });
+    cur = i;
+    if (cap) cap.textContent = label(works[i]);
+    count.textContent = pad(i + 1) + " / " + pad(works.length);
+    new Image().src = works[(i + 1) % works.length].img;   // fetch the next one ahead
+  }
+  function run() {
+    clearInterval(timer); timer = null;
+    if (!paused && !document.hidden) timer = setInterval(function () { show(cur + 1); }, DELAY);
+  }
+  function setPaused(p) {
+    paused = p;
+    pauseBtn.setAttribute("aria-pressed", p ? "true" : "false");
+    pauseBtn.innerHTML = p
+      ? '<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z"/></svg>'
+      : '<svg viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12"/><rect x="8.5" y="1" width="3.5" height="12"/></svg>';
+    run();
+  }
+
+  ctl.querySelector(".prev").addEventListener("click", function () { show(cur - 1); run(); });
+  ctl.querySelector(".next").addEventListener("click", function () { show(cur + 1); run(); });
+  pauseBtn.addEventListener("click", function () { setPaused(!paused); });
+  document.addEventListener("visibilitychange", run);
+  count.textContent = pad(start + 1) + " / " + pad(works.length);
+  ctl.hidden = false;
+  setPaused(paused);
+  new Image().src = works[(start + 1) % works.length].img;
 })();

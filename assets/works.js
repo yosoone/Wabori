@@ -5,7 +5,11 @@
  * and alt text describing the tattoo for people who cannot see the photo.
  * The _ja lines are the same in Japanese, for the Japanese page (ja/index.html);
  * if a piece has none, the Japanese page shows the English wording.
- * The pages build the grid from this list; nothing else needs changing.
+ * The pages build the grid from this list, and the slideshow on the opening screen
+ * runs through it in the same order, starting from the Phoenix.
+ * pos / pos_wide (optional) choose which part of the photo stays in view on the
+ * opening screen, on phones and on wide screens: "left% top%", e.g. "50% 58%".
+ * Nothing else needs changing.
  */
 window.WABORI_WORKS = [
   { title: "Peony & Butterfly", place: "Back piece", img: "images/peony-butterfly.webp",
@@ -15,7 +19,8 @@ window.WABORI_WORKS = [
   { title: "Phoenix", place: "Back piece", img: "images/phoenix-back.webp",
     alt: "Phoenix back piece tattoo by Yoso, black and grey",
     title_ja: "鳳凰", place_ja: "背中",
-    alt_ja: "Yosoによる鳳凰の背中のタトゥー（ブラック＆グレー）" },
+    alt_ja: "Yosoによる鳳凰の背中のタトゥー（ブラック＆グレー）",
+    pos: "42% 40%", pos_wide: "50% 58%" },
   { title: "Lotus", place: "Back piece", img: "images/lotus-back.webp",
     alt: "Lotus back piece tattoo by Yoso",
     title_ja: "蓮", place_ja: "背中",
