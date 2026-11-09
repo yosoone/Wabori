@@ -4,7 +4,10 @@ Wabori (和彫) is Yoso's tattoo site: custom Japanese tattoos from the studio i
 
 ## Files
 
-- `index.html`: the whole page (HTML and CSS in one file; fonts from Google Fonts)
+- `index.html`: the English page
+- `ja.html`: the same page in Japanese (日本語). When you change the wording of one, change the other too
+- `assets/site.css`, `assets/site.js`: the look and the scripts, shared by both pages (fonts from Google Fonts)
+- `sitemap.xml`: tells search engines about both pages and that they are translations of each other
 - `assets/works.js`: the list of tattoos in the portfolio, in order
 - `assets/list-choice.js`: the newsletter step of the mailing-list form (the same file on every Yoso site)
 - `images/`: the photos, plus `yoso-mark.png` (the gold family mark)
@@ -20,13 +23,21 @@ Wabori (和彫) is Yoso's tattoo site: custom Japanese tattoos from the studio i
 
    ```js
    { title: "Koi", place: "Sleeve", img: "images/koi-sleeve.webp",
-     alt: "Koi sleeve tattoo by Yoso, in colour" },
+     alt: "Koi sleeve tattoo by Yoso, in colour",
+     title_ja: "鯉", place_ja: "袖",
+     alt_ja: "Yosoによる鯉の袖のタトゥー（カラー）" },
    ```
+
+   The `_ja` lines are the Japanese wording for `ja.html`; leave them out and the Japanese page shows the English.
 
    `alt` describes the tattoo for people who cannot see the photo.
 3. Publish (below).
 
 To remove a piece, delete its line. To change the order, move the lines.
+
+## Search engines (English and Japanese)
+
+Each page names its language, points to the other as its translation (`hreflang`), and carries its own title, description and a description of the studio for Google (the `ld+json` block in the head). `sitemap.xml` lists both pages and is named in `robots.txt`. After publishing, add the site in Google Search Console and submit `https://wabori.yoso.one/sitemap.xml`.
 
 ## Hosting
 

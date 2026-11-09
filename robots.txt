@@ -13,3 +13,5 @@ Disallow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://wabori.yoso.one/sitemap.xml
